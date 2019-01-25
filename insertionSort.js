@@ -45,4 +45,19 @@ const findInsertAtIndex = (elementToInsert, circArrToInsertIn, indexOfSmallestEl
   }
   return insertAtIndex;
 };
-module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr, findInsertAtIndex };
+const sliceCircularArray = (arrayToSlice, lower, upper, smallOrLarge) => {
+  if (lower > upper && smallOrLarge === 'large') {
+    return arrayToSlice.slice(lower).concat(arrayToSlice.slice(0, upper + 1));
+  }
+  if (lower > upper && smallOrLarge === 'small') {
+    return arrayToSlice.slice(lower).concat(arrayToSlice.slice(0, upper));
+  }
+  if (lower === upper) {
+    return [arrayToSlice[lower]];
+  }
+  if (upper === lower + 1 && smallOrLarge === 'large') {
+    return arrayToSlice.slice(lower, upper + 1);
+  }
+  return arrayToSlice.slice(lower, upper);
+};
+module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr, findInsertAtIndex, sliceCircularArray };
