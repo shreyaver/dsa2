@@ -31,3 +31,15 @@ describe('createCircularArrayObj()', () => {
     expect(insertionSort.createCircularArrayObj([1, 2, 3])).toEqual({ h: 0, t: 0, Y: [1, -1, -1] });
   });
 });
+describe('insertionSortToCircularArray()', () => {
+  it('should sort array with elements smaller than the ones already sorted', () => {
+    const circularArrayObj = { h: 0, t: 0, Y: [10, -1, -1, -1, -1, -1, -1, -1, -1, -1] };
+    insertionSort.insertionSortToCircularArr([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], circularArrayObj);
+    expect(circularArrayObj).toEqual({ h: 1, t: 0, Y: [10, 1, 2, 3, 4, 5, 6, 7, 8, 9] });
+  });
+  it('should sort array with elements greater than the ones already sorted', () => {
+    const circularArrayObj = { h: 0, t: 0, Y: [1, -1, -1, -1, -1, -1, -1, -1, -1, -1] };
+    insertionSort.insertionSortToCircularArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], circularArrayObj);
+    expect(circularArrayObj).toEqual({ h: 0, t: 9, Y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] });
+  });
+});

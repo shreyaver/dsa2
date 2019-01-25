@@ -25,4 +25,16 @@ const createCircularArrayObj = (arrToSort) => {
   };
   return circularArrayObj;
 };
-module.exports = { validateInput, createCircularArrayObj };
+const insertionSortToCircularArr = (arrToSort, circularArrayObj) => {
+  const N = circularArrayObj.Y.length;
+  arrToSort.slice(1).forEach((element) => {
+    if (element < circularArrayObj.Y[circularArrayObj.h]) {
+      circularArrayObj.h = circularArrayObj.h === 0 ? N - 1 : circularArrayObj.h - 1;
+      circularArrayObj.Y[circularArrayObj.h] = element;
+    } else if (element > circularArrayObj.Y[circularArrayObj.t]) {
+      circularArrayObj.t = (circularArrayObj.t + 1) % N;
+      circularArrayObj.Y[circularArrayObj.t] = element;
+    }
+  });
+};
+module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr };
