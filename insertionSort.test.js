@@ -16,8 +16,8 @@ describe('validateInput(arrToSort)', () => {
   it('should return false for array with duplicates', () => {
     expect(insertionSort.validateInput([1, 2, 3, 1, 4])).toEqual(false);
   });
-  it('should return true for empty array', () => {
-    expect(insertionSort.validateInput([])).toEqual(true);
+  it('should return false for empty array', () => {
+    expect(insertionSort.validateInput([])).toEqual(false);
   });
   it('should return true for input array with positive integers', () => {
     expect(insertionSort.validateInput([2, 3, 1])).toEqual(true);
@@ -154,5 +154,39 @@ describe('main()', () => {
       [25, 37, 48, 57, 92, -1, -1, 12],
       [25, 37, 48, 57, 86, 92, -1, 12],
       [33, 37, 48, 57, 86, 92, 12, 25]]);
+  });
+  it('should return steps of insertion sort of ascending array to circular array', () => {
+    process.argv = ['node', 'insertionSort.js', 8, 1, 2, 3, 4, 5, 6, 7, 8];
+    expect(insertionSort.main()).toEqual([[1, -1, -1, -1, -1, -1, -1, -1],
+      [1, 2, -1, -1, -1, -1, -1, -1],
+      [1, 2, 3, -1, -1, -1, -1, -1],
+      [1, 2, 3, 4, -1, -1, -1, -1],
+      [1, 2, 3, 4, 5, -1, -1, -1],
+      [1, 2, 3, 4, 5, 6, -1, -1],
+      [1, 2, 3, 4, 5, 6, 7, -1],
+      [1, 2, 3, 4, 5, 6, 7, 8]]);
+  });
+  it('should return steps of insertion sort of descending array to circular array', () => {
+    process.argv = ['node', 'insertionSort.js', 8, 8, 7, 6, 5, 4, 3, 2, 1];
+    expect(insertionSort.main()).toEqual([[8, -1, -1, -1, -1, -1, -1, -1],
+      [8, -1, -1, -1, -1, -1, -1, 7],
+      [8, -1, -1, -1, -1, -1, 6, 7],
+      [8, -1, -1, -1, -1, 5, 6, 7],
+      [8, -1, -1, -1, 4, 5, 6, 7],
+      [8, -1, -1, 3, 4, 5, 6, 7],
+      [8, -1, 2, 3, 4, 5, 6, 7],
+      [8, 1, 2, 3, 4, 5, 6, 7]]);
+  });
+  it('should return "Invalid input" for empty array', () => {
+    process.argv = ['node', 'insertionSort.js', 0];
+    expect(insertionSort.main()).toEqual('Invalid input');
+  });
+  it('should return "Invalid input" for incorrect size', () => {
+    process.argv = ['node', 'insertionSort.js', 2, 1];
+    expect(insertionSort.main()).toEqual('Invalid input');
+  });
+  it('should return steps of insertion sort of single element array to circular array', () => {
+    process.argv = ['node', 'insertionSort.js', 1, 8];
+    expect(insertionSort.main()).toEqual([[8]]);
   });
 });

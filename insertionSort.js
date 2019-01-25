@@ -2,16 +2,18 @@
 const validateInput = (arrToSort) => {
   try {
     if (arrToSort.constructor === Array) {
-      if (arrToSort.every(val => Number.isInteger(val) && val > 0)) {
-        const arrTemp = arrToSort.slice();
-        arrTemp.sort();
-        if (arrTemp.every((val, i) => {
-          if (i < arrTemp.length - 1) {
-            return arrTemp.indexOf(val, i + 1) === -1;
+      if (arrToSort.length > 0) {
+        if (arrToSort.every(val => Number.isInteger(val) && val > 0)) {
+          const arrTemp = arrToSort.slice();
+          arrTemp.sort();
+          if (arrTemp.every((val, i) => {
+            if (i < arrTemp.length - 1) {
+              return arrTemp.indexOf(val, i + 1) === -1;
+            }
+            return true;
+          })) {
+            return true;
           }
-          return true;
-        })) {
-          return true;
         }
       }
     }
@@ -48,7 +50,6 @@ const insertionSortToCircularArr = (arrToSort, circularArrayObj) => {
       let insertAtIndex = findInsertAtIndex(element, circularArrayObj.Y, circularArrayObj.h, circularArrayObj.Y.length);
       const S = sliceCircularArray(circularArrayObj.Y, circularArrayObj.h, insertAtIndex, 'small');
       const L = sliceCircularArray(circularArrayObj.Y, insertAtIndex, circularArrayObj.t, 'large');
-      //console.log(insertAtIndex, S, L);
       if (S.length < L.length) {
         shift(circularArrayObj, element, insertAtIndex === 0 ? N - 1 : insertAtIndex - 1, 'left');
       } else {
@@ -62,12 +63,9 @@ const insertionSortToCircularArr = (arrToSort, circularArrayObj) => {
 // eslint-disable-next-line max-len
 const findInsertAtIndex = (elementToInsert, circArrToInsertIn, indexOfSmallestElement, circArraySize) => {
   let insertAtIndex = (indexOfSmallestElement + 1) % circArraySize;
-  // console.log('initial: ', insertAtIndex);
   while (elementToInsert > circArrToInsertIn[insertAtIndex]) {
     insertAtIndex = (insertAtIndex + 1) % circArraySize;
-    // console.log(insertAtIndex);
   }
-  // console.log('final: ', insertAtIndex);
   return insertAtIndex;
 };
 const sliceCircularArray = (arrayToSlice, lower, upper, smallOrLarge) => {
