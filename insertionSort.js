@@ -37,4 +37,12 @@ const insertionSortToCircularArr = (arrToSort, circularArrayObj) => {
     }
   });
 };
-module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr };
+// eslint-disable-next-line max-len
+const findInsertAtIndex = (elementToInsert, circArrToInsertIn, indexOfSmallestElement, circArraySize) => {
+  let insertAtIndex = (indexOfSmallestElement + 1) % circArraySize;
+  while (elementToInsert > circArrToInsertIn[insertAtIndex]) {
+    insertAtIndex = (insertAtIndex + 1) % circArraySize;
+  }
+  return insertAtIndex;
+};
+module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr, findInsertAtIndex };

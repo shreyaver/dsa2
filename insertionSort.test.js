@@ -43,3 +43,20 @@ describe('insertionSortToCircularArray()', () => {
     expect(circularArrayObj).toEqual({ h: 0, t: 9, Y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] });
   });
 });
+describe('insertAtIndex()', () => {
+  it('should return index to insert element right before largest number', () => {
+    expect(insertionSort.findInsertAtIndex(3, [1, 2, 4, -1], 0, 4)).toEqual(2);
+  });
+  it('should return index to insert element right after smallest number', () => {
+    expect(insertionSort.findInsertAtIndex(2, [1, 3, 4, -1], 0, 4)).toEqual(1);
+  });
+  it('should return index to insert element in the middle', () => {
+    expect(insertionSort.findInsertAtIndex(3, [1, 2, 4, 5, -1], 0, 5)).toEqual(2);
+  });
+  it('should return index to insert element in the middle when smallest element is after largest element', () => {
+    expect(insertionSort.findInsertAtIndex(3, [2, 4, 5, -1, 1], 0, 5)).toEqual(1);
+  });
+  it('should return index to insert element in the middle when index is after largest element', () => {
+    expect(insertionSort.findInsertAtIndex(3, [5, -1, 1, 2, 4], 0, 5)).toEqual(4);
+  });
+});
