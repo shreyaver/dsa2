@@ -1,0 +1,16 @@
+{
+  "name": "dsa2",
+  "version": "1.0.0",
+  "description": "Insertion sort to circular array",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shreya Verma",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0"
+  }
+}
