@@ -12,4 +12,17 @@ const validateInput = (arrToSort) => {
     return false;
   }
 };
-module.exports = { validateInput };
+const createCircularArrayObj = (arrToSort) => {
+  const circularArrayObj = {
+    h: 0,
+    t: 0,
+    Y: arrToSort.map((val, index) => {
+      if (index === 0) {
+        return val;
+      }
+      return -1;
+    }),
+  };
+  return circularArrayObj;
+};
+module.exports = { validateInput, createCircularArrayObj };
