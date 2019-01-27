@@ -104,8 +104,8 @@ const shift = (circularArrayObj, element, insertAtIndex, leftOrRight) => {
   }
 };
 const main = () => {
-  const inputArr = process.argv.slice(3);
-  if (validateInput(inputArr) === true && inputArr.length === process.argv[2]) {
+  const inputArr = process.argv.slice(3).map(val => Number(val));
+  if (validateInput(inputArr) === true && inputArr.length === Number(process.argv[2])) {
     const circularArrayObj = createCircularArrayObj(inputArr);
     const resultArr = insertionSortToCircularArr(inputArr, circularArrayObj);
     resultArr.forEach((arr) => {
@@ -116,4 +116,5 @@ const main = () => {
   console.log('Invalid input');
   return 'Invalid input';
 };
+main();
 module.exports = { validateInput, createCircularArrayObj, insertionSortToCircularArr, findInsertAtIndex, sliceCircularArray, shift, main };
