@@ -78,7 +78,7 @@ const sliceCircularArray = (arrayToSlice, lower, upper, smallOrLarge) => {
   if (lower === upper) {
     return [arrayToSlice[lower]];
   }
-  if (upper === lower + 1 && smallOrLarge === 'large') {
+  if (smallOrLarge === 'large') {
     return arrayToSlice.slice(lower, upper + 1);
   }
   return arrayToSlice.slice(lower, upper);
