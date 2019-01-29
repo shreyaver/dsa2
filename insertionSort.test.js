@@ -177,6 +177,14 @@ describe('main()', () => {
       [8, -1, 2, 3, 4, 5, 6, 7],
       [8, 1, 2, 3, 4, 5, 6, 7]]);
   });
+  it('should return steps of insertion sort to circular array with left shift over array end', () => {
+    process.argv = ['node', 'insertionSort.js', 5, 3, 7, 6, 5, 4];
+    expect(insertionSort.main()).toEqual([[3, -1, -1, -1, -1],
+      [3, 7, -1, -1, -1],
+      [3, 6, 7, -1, -1],
+      [5, 6, 7, -1, 3],
+      [5, 6, 7, 3, 4]]);
+  });
   it('should return "Invalid input" for empty array', () => {
     process.argv = ['node', 'insertionSort.js', 0];
     expect(insertionSort.main()).toEqual('Invalid input');
@@ -188,5 +196,29 @@ describe('main()', () => {
   it('should return steps of insertion sort of single element array to circular array', () => {
     process.argv = ['node', 'insertionSort.js', 1, 8];
     expect(insertionSort.main()).toEqual([[8]]);
+  });
+  it('should return steps of insertion sort to circular array with left shift over array end', () => {
+    process.argv = ['node', 'insertionSort.js', 8, 8, 1, 7, 2, 6, 3, 5, 4];
+    expect(insertionSort.main()).toEqual([[8, -1, -1, -1, -1, -1, -1, -1],
+      [8, -1, -1, -1, -1, -1, -1, 1],
+      [7, 8, -1, -1, -1, -1, -1, 1],
+      [7, 8, -1, -1, -1, -1, 1, 2],
+      [6, 7, 8, -1, -1, -1, 1, 2],
+      [6, 7, 8, -1, -1, 1, 2, 3],
+      [5, 6, 7, 8, -1, 1, 2, 3],
+      [5, 6, 7, 8, 1, 2, 3, 4]]);
+  });
+  it('should return steps of insertion sort to circular array with left shift over array end', () => {
+    process.argv = ['node', 'insertionSort.js', 10, 25, 57, 37, 48, 26, 3, 12, 92, 86, 33];
+    expect(insertionSort.main()).toEqual([[25, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+      [25, 57, -1, -1, -1, -1, -1, -1, -1, -1],
+      [25, 37, 57, -1, -1, -1, -1, -1, -1, -1],
+      [25, 37, 48, 57, -1, -1, -1, -1, -1, -1],
+      [26, 37, 48, 57, -1, -1, -1, -1, -1, 25],
+      [26, 37, 48, 57, -1, -1, -1, -1, 3, 25],
+      [26, 37, 48, 57, -1, -1, -1, 3, 12, 25],
+      [26, 37, 48, 57, 92, -1, -1, 3, 12, 25],
+      [26, 37, 48, 57, 86, 92, -1, 3, 12, 25],
+      [33, 37, 48, 57, 86, 92, 3, 12, 25, 26]]);
   });
 });
